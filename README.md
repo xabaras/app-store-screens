@@ -6,6 +6,9 @@ AI agent skill that turns **raw app screenshots** into polished **App Store** an
 **Google Play** phone listing images: themed background, short claims, and the
 real UI (optionally inside an iPhone or Pixel bezel as part of the graphic).
 
+Intended primarily for coding agents that support Agent Skills (such as **Cursor** and
+**Claude Code**). The Python scripts also work on their own from the CLI.
+
 - Product UI is always the user's PNG/JPEG — never rebuilt in HTML.
 - Chrome (type, colour, frame, blobs) is HTML/CSS, exported with Playwright.
 - v1 sizes: iPhone **1290×2796**, Play phone **1080×1920**.
@@ -92,7 +95,7 @@ A slide that uses a **full-bleed photo** instead of (or without) a device frame:
 
 - **Python 3.10+** (3.11+ recommended) with `venv` / `pip`
 - Network access the first time you run `playwright install chromium` (browser download)
-- Optional: an AI coding agent that can load Agent Skills (for example Cursor, Claude Code, or similar) if you want the skill-driven workflow — the scripts also work standalone
+- Optional: a coding agent with Agent Skills support (primarily **Cursor** or **Claude Code**; others may work) for the skill-driven workflow — scripts also work standalone
 
 ### Setup
 
@@ -105,13 +108,18 @@ python -m venv .venv
 
 ### Use with an agent (optional)
 
-Point your agent at this repo / `skills/app-store-screens/` using whatever skill path your tool expects. Example for Cursor:
+This skill is meant to be used mainly from an agent (Cursor, Claude Code, or similar).
+Register `skills/app-store-screens/` in the skills path your tool uses:
 
 ```bash
+# Cursor
 ln -sfn /path/to/app-store-screens ~/.cursor/skills/app-store-screens
+
+# Claude Code
+ln -sfn /path/to/app-store-screens/skills/app-store-screens ~/.claude/skills/app-store-screens
 ```
 
-Other agents (Claude Code, etc.) use their own skills directory — same folder contents apply.
+(Paths may vary by tool version; the important part is that the agent can see `SKILL.md`.)
 
 ## Quick use
 
