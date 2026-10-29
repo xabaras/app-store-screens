@@ -1,6 +1,6 @@
 # app-store-screens
 
-**Version 1.1**
+**Version 1.2**
 
 AI agent skill that turns **raw app screenshots** into polished **App Store** and
 **Google Play** phone listing images: themed background, short claims, and the
@@ -145,6 +145,11 @@ requirements.txt
 ```
 
 ## Changelog
+
+### 1.2
+
+- Default marketing typeface is **Inter**; was Montserrat.
+- Slightly larger claim sublines on tall App Store canvases (iPhone), via CSS that does not affect Play.
 
 ### 1.1
 

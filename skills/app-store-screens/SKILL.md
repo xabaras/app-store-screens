@@ -10,7 +10,7 @@ description: >-
 
 # app-store-screens
 
-Version: **1.1**
+Version: **1.2**
 
 Input: an app + **3–6 user-provided UI screenshots** (+ optional brand art).  
 Output: **3–4** store-ready PNGs for **iPhone (1290×2796)** and **Play phone (1080×1920)**.  
@@ -72,7 +72,7 @@ Commands: `references/pipeline.md`. Sizes: `references/sizes.md`. Layouts: `refe
    - Style like store templates (ScreenshotWhale / ShotPass): bright color-block, benefit headline, not dark muddy washes.
    - Set `--bg` / `--bg-deep` / `--fg` / `--accent` (white on vivid, or dark ink on pastel).
    - Headline + optional subline from sourced claims.
-   - Typography: Montserrat 900, large headlines (see `theme.css`).
+   - Typography: Inter 900, large headlines (see `theme.css`).
    - `data-layout`: `claim-top` | `claim-top-flush` | `claim-top-blobs` | `claim-bottom` |
      `phones-overlap` | `lifestyle-bleed` | `graphic-hero`. Mix so slides are not identical.
    - `phones-overlap`: two `.phone.back` / `.phone.front` with real screens.

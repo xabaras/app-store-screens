@@ -9,7 +9,7 @@
 ## Visual direction
 
 - Bright color-block or soft organic blobs — not muddy dark browns.
-- Headlines: **Montserrat 900** (large); sublines 700+ with strong contrast.
+- Headlines: **Inter 900** (large); sublines 700+ with strong contrast.
 - In-bezel UI: `object-fit: cover` + `object-position: top` so there are **no black letterbox bands**.
 - Optional `.app-icon` only when placement is clearly good; omit by default even if an icon file exists.
 - Lifestyle full-bleed photo **only** if the user asks **and** supplies a photo.

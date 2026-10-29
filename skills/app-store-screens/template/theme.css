@@ -1,5 +1,5 @@
 /* Store slide chrome — ScreenshotWhale / ShotPass style.
-   Montserrat Black headlines (Inter possible later). App UI = real <img> only. */
+   Inter Black headlines. App UI = real <img> only. */
 
 :root {
   --bg: #ff7a2f;
@@ -13,7 +13,7 @@
   --bezel: #0c0c0e;
   --bezel-highlight: #2a2a30;
   --shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
-  --font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --icon-size: clamp(56px, 9vw, 96px);
 }
 
@@ -137,6 +137,17 @@ body {
   font-weight: 700;
   color: var(--muted);
   max-width: 94%;
+}
+
+/* Taller App Store canvas only — do not affect Play (1080×1920) */
+@media (min-height: 2500px) {
+  .claim p {
+    font-size: clamp(34px, 5vw, 60px);
+  }
+
+  .slide[data-layout="lifestyle-bleed"] .claim p {
+    font-size: clamp(32px, 4.5vw, 56px);
+  }
 }
 
 .product {
