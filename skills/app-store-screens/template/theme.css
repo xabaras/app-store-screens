@@ -1,0 +1,521 @@
+/* Store slide chrome — ScreenshotWhale / ShotPass style.
+   Montserrat Black headlines (Inter possible later). App UI = real <img> only. */
+
+:root {
+  --bg: #ff7a2f;
+  --bg-deep: #ff6a1a;
+  --fg: #ffffff;
+  --accent: #ffe566;
+  --muted: rgba(255, 255, 255, 0.95);
+  --ink: #0b1020;
+  --claim-band: 22%;
+  --phone-max-w: 78%;
+  --bezel: #0c0c0e;
+  --bezel-highlight: #2a2a30;
+  --shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+  --font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --icon-size: clamp(56px, 9vw, 96px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 18%, rgba(255, 255, 255, 0.22), transparent 60%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+}
+
+/* Soft organic blobs */
+.slide .blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.slide .blobs span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.slide .blobs .b1 {
+  width: 140%;
+  height: 70%;
+  left: -20%;
+  top: -28%;
+  background: var(--blob-1, #ff5a2a);
+  border-radius: 45% 55% 60% 40% / 50% 40% 60% 50%;
+}
+
+.slide .blobs .b2 {
+  width: 110%;
+  height: 55%;
+  right: -30%;
+  bottom: -18%;
+  background: var(--blob-2, #ffb078);
+  border-radius: 55% 45% 40% 60% / 45% 55% 45% 55%;
+  opacity: 0.95;
+}
+
+.slide .blobs .b3 {
+  width: 55%;
+  height: 40%;
+  left: -12%;
+  bottom: 8%;
+  background: var(--blob-3, #4aa3ff);
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  opacity: 0.85;
+}
+
+.claim {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.35em;
+}
+
+.claim .app-icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  border-radius: 22%;
+  object-fit: cover;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  margin-bottom: 0.15em;
+  background: #fff;
+}
+
+.claim h1 {
+  margin: 0;
+  font-family: var(--font);
+  font-weight: 900;
+  font-size: clamp(56px, 9vw, 120px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
+.claim h1 .hl,
+.claim .hl {
+  color: var(--accent);
+}
+
+.claim p {
+  margin: 0;
+  font-family: var(--font);
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--muted);
+  max-width: 94%;
+}
+
+.product {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* --- claim-top --- */
+
+.slide[data-layout="claim-top"] .claim,
+.slide:not([data-layout]) .claim {
+  top: 4.5%;
+  height: var(--claim-band);
+}
+
+.slide[data-layout="claim-top"] .product,
+.slide:not([data-layout]) .product {
+  top: calc(4.5% + var(--claim-band));
+  bottom: -8%;
+  align-items: flex-start;
+  padding-top: 1%;
+}
+
+.slide[data-layout="claim-top"] .phone,
+.slide:not([data-layout]) .phone {
+  height: 100%;
+  max-height: none;
+}
+
+/* --- claim-top-flush --- */
+
+.slide[data-layout="claim-top-flush"] .claim {
+  top: 4%;
+  height: 16%;
+}
+
+.slide[data-layout="claim-top-flush"] .product {
+  top: 20%;
+  bottom: -10%;
+  align-items: flex-start;
+  padding-top: 1%;
+}
+
+.slide[data-layout="claim-top-flush"] .phone {
+  --phone-max-w: 86%;
+  height: 100%;
+}
+
+/* --- claim-bottom --- */
+
+.slide[data-layout="claim-bottom"] {
+  --claim-band: 16%;
+  --phone-max-w: 82%;
+}
+
+.slide[data-layout="claim-bottom"] .product {
+  top: 3%;
+  bottom: 24%;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.5%;
+}
+
+.slide[data-layout="claim-bottom"] .phone {
+  height: 100%;
+  max-height: 100%;
+}
+
+.slide[data-layout="claim-bottom"] .claim {
+  top: auto;
+  bottom: 6%;
+  height: var(--claim-band);
+}
+
+.slide[data-layout="claim-bottom"] .claim h1 {
+  font-size: clamp(52px, 8vw, 108px);
+}
+
+/* --- Device bezel: fill screen (cover top) — no black letterbox bands --- */
+
+.phone {
+  position: relative;
+  box-sizing: border-box;
+  width: auto;
+  max-width: var(--phone-max-w);
+  aspect-ratio: 9 / 19.5;
+  height: auto;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: clamp(28px, 6.2vw, 68px);
+  background: var(--bezel);
+  border: 1px solid var(--bezel-highlight);
+  box-shadow: var(--shadow);
+  padding: clamp(9px, 1.3vw, 16px);
+  overflow: hidden;
+}
+
+.slide[data-layout="claim-top"] .phone,
+.slide:not([data-layout]) .phone,
+.slide[data-layout="claim-top-flush"] .phone,
+.slide[data-layout="claim-top-blobs"] .phone {
+  height: 100%;
+  width: auto;
+  max-height: none;
+  aspect-ratio: 9 / 19.5;
+}
+
+.phone.iphone {
+  padding-top: clamp(20px, 3%, 32px);
+}
+
+.phone.iphone::before {
+  content: "";
+  position: absolute;
+  top: clamp(7px, 1%, 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28%;
+  height: clamp(14px, 1.8%, 24px);
+  background: #050506;
+  border-radius: 999px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.phone.pixel {
+  border-radius: clamp(22px, 5.2vw, 52px);
+  padding-top: clamp(16px, 2.4%, 26px);
+}
+
+.phone.pixel::before {
+  content: "";
+  position: absolute;
+  top: clamp(5px, 0.85%, 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(10px, 2.2%, 15px);
+  aspect-ratio: 1;
+  background: #1a2228;
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 0 0 2px #050506;
+  pointer-events: none;
+}
+
+.phone .screen {
+  display: block;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: clamp(16px, 4.2vw, 48px);
+  background: #f5f5f5;
+}
+
+.phone.pixel .screen {
+  border-radius: clamp(12px, 3.2vw, 34px);
+}
+
+.phone.bare {
+  background: transparent;
+  border: none;
+  box-shadow: var(--shadow);
+  padding: 0;
+}
+
+.phone.bare::before {
+  display: none;
+}
+
+.phone.bare .screen {
+  border-radius: clamp(14px, 2.8vw, 32px);
+}
+
+.slide[data-layout="graphic-hero"] .product {
+  top: 8%;
+  bottom: 28%;
+  flex-direction: column;
+  gap: 3%;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide[data-layout="graphic-hero"] .claim {
+  top: auto;
+  bottom: 7%;
+  height: var(--claim-band);
+}
+
+.hero-art {
+  max-width: 48%;
+  max-height: 26%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.25));
+}
+
+.slide[data-layout="graphic-hero"] .phone {
+  max-height: 70%;
+  height: auto;
+}
+
+/* --- claim-top-blobs --- */
+
+.slide[data-layout="claim-top-blobs"] {
+  background: var(--bg);
+}
+
+.slide[data-layout="claim-top-blobs"] .claim {
+  top: 4.5%;
+  height: var(--claim-band);
+  z-index: 3;
+}
+
+.slide[data-layout="claim-top-blobs"] .product {
+  top: calc(4.5% + var(--claim-band));
+  bottom: -3%;
+  align-items: flex-start;
+  padding-top: 1%;
+  z-index: 2;
+}
+
+.slide[data-layout="claim-top-blobs"] .phone {
+  height: 100%;
+  max-height: none;
+  --phone-max-w: 74%;
+}
+
+/* --- phones-overlap: stacked tilted phones bleed TOP; claim BELOW --- */
+
+.slide[data-layout="phones-overlap"] {
+  /* Claude-style stack: same-direction tilt, heavy overlap; claim below; bleed top */
+  --phone-max-w: 62%;
+  --claim-band: 18%;
+  --claim-gap: 4%; /* equal space: slide bottom ↔ text ↔ container */
+}
+
+.slide[data-layout="phones-overlap"] .claim {
+  top: auto;
+  bottom: var(--claim-gap);
+  left: 7%;
+  right: 7%;
+  height: var(--claim-band);
+  align-items: center;
+  text-align: center;
+  z-index: 3;
+}
+
+.slide[data-layout="phones-overlap"] .claim h1 {
+  font-size: clamp(48px, 7.6vw, 100px);
+}
+
+.slide[data-layout="phones-overlap"] .product {
+  /* Lift so gap above claim matches gap below claim */
+  top: -36%;
+  bottom: calc(var(--claim-gap) + var(--claim-band) + var(--claim-gap));
+  left: 0;
+  right: -6%;
+  display: block;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.slide[data-layout="phones-overlap"] .stack {
+  position: absolute;
+  inset: 0;
+  /* 5% larger toward BR; slight lift with the container */
+  transform: scale(1.05) translateY(-5%);
+  transform-origin: 8% 0%;
+}
+
+.slide[data-layout="phones-overlap"] .phone {
+  position: absolute;
+  top: auto;
+  width: var(--phone-max-w);
+  height: auto;
+  max-width: none;
+  max-height: 94%;
+  aspect-ratio: 9 / 19.5;
+  transform-origin: 50% 30%;
+}
+
+/* Back higher-left; front lower-right — same clockwise tilt, Claude-like stack */
+.slide[data-layout="phones-overlap"] .phone.back {
+  left: 5%;
+  bottom: 14%;
+  width: 56%;
+  transform: rotate(6deg);
+  z-index: 1;
+  filter: brightness(0.97);
+}
+
+.slide[data-layout="phones-overlap"] .phone.front {
+  left: 24%;
+  right: auto;
+  bottom: 2%;
+  width: 62%;
+  transform: rotate(8deg);
+  z-index: 2;
+}
+
+/* --- lifestyle-bleed: full-bleed user photo, no phone by default ---
+   ONLY when the user asks AND provides a photo. Never invent/download stock. */
+
+.slide[data-layout="lifestyle-bleed"] {
+  background: #111;
+}
+
+.slide[data-layout="lifestyle-bleed"] .bleed-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.slide[data-layout="lifestyle-bleed"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.05) 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.slide[data-layout="lifestyle-bleed"] .claim {
+  top: auto;
+  bottom: 8%;
+  left: 8%;
+  right: 10%;
+  height: auto;
+  align-items: flex-start;
+  text-align: left;
+  z-index: 2;
+  gap: 0.5em;
+}
+
+.slide[data-layout="lifestyle-bleed"] .claim h1 {
+  font-size: clamp(48px, 8.5vw, 110px);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+.slide[data-layout="lifestyle-bleed"] .claim p {
+  font-size: clamp(26px, 3.6vw, 44px);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+.slide[data-layout="lifestyle-bleed"] .product {
+  display: none;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(70%, 400px);
+  aspect-ratio: 9 / 19.5;
+  background: #333;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
+  padding: 8%;
+  border-radius: 40px;
+}

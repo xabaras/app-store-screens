@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{SLIDE_ID}} — {{APP_NAME}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    :root {
+      --bg: {{BG}};
+      --bg-deep: {{BG2}};
+      --fg: {{FG}};
+      --accent: {{ACCENT}};
+      --muted: {{MUTED}};
+    }
+  </style>
+</head>
+<body>
+  <!--
+    data-layout: claim-top | claim-top-flush | claim-top-blobs | claim-bottom
+                 | phones-overlap | lifestyle-bleed | graphic-hero
+    Optional in .claim: <img class="app-icon" src="../../assets/brand/icon.png" alt="" />
+    lifestyle-bleed: <img class="bleed-photo" src="../../assets/lifestyle/hero.jpg" alt="" />
+      (only with a user-provided photo — never invent/download)
+    phones-overlap: .phone.back + .phone.front
+  -->
+  <article class="slide" data-layout="{{LAYOUT}}" data-slide="{{SLIDE_ID}}">
+    <div class="blobs" aria-hidden="true">
+      <span class="b1"></span>
+      <span class="b2"></span>
+      <span class="b3"></span>
+    </div>
+    <header class="claim">
+      <h1>{{HEADLINE}}</h1>
+      <p>{{SUBLINE}}</p>
+    </header>
+    <div class="product">
+      <div class="phone {{FRAME}}">
+        <img class="screen" src="{{SCREEN_SRC}}" alt="{{SCREEN_ALT}}" />
+      </div>
+    </div>
+  </article>
+</body>
+</html>

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT"
+if [[ -x .venv/bin/python ]]; then
+  PY=.venv/bin/python
+else
+  PY=python3
+fi
+if command -v ruff >/dev/null 2>&1 || [[ -x .venv/bin/ruff ]]; then
+  RUFF="${RUFF:-.venv/bin/ruff}"
+  [[ -x $RUFF ]] || RUFF=ruff
+  "$RUFF" check skills tests
+  "$RUFF" format --check skills tests
+fi
+"$PY" -m pytest -q
