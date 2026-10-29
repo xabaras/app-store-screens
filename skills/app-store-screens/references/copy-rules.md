@@ -16,6 +16,7 @@ These rules win over any creative idea.
 
 - One idea per slide. Short: prefer ≤ ~6 words for the main claim when the language allows.
 - Subline optional; never compete with the headline.
-- Language of the run = language the user chose (can differ from storefront country).
-  If they have not chosen one yet: **ask and stop** until they answer. Never guess from
-  storefront, screens, or a silent `en` default.
+- Language of the run = language the user chose, or **English (`en`) by default**
+  (can differ from storefront country). Do not ask and wait if they said nothing about language.
+  Extra locales the user requested → separate project folders
+  `~/store-screenshots/<slug>/<lang>/` with claims translated from the same sourced facts.

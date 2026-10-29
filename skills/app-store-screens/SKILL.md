@@ -10,7 +10,7 @@ description: >-
 
 # app-store-screens
 
-Version: **1.0**
+Version: **1.1**
 
 Input: an app + **3–6 user-provided UI screenshots** (+ optional brand art).  
 Output: **3–4** store-ready PNGs for **iPhone (1290×2796)** and **Play phone (1080×1920)**.  
@@ -35,9 +35,11 @@ ratings, #1, testimonials, or features the app does not have.
 ## Inputs (ask for what is missing)
 
 - App name; website URL; App Store id and/or Google Play package; storefront country.
-- **Copy language** (may differ from storefront). If the user did not give it, **ask and wait** —
-  do not invent, do not default to English or to the storefront country, and do not scaffold
-  or write copy until they answer.
+- **Copy language** (optional; may differ from storefront). **Default: English (`en`)**.
+  If the user does not mention a language, proceed in English — do not ask and wait.
+  If they name a language, use it. If they ask for **multiple language variants**, create one
+  project folder per locale under `~/store-screenshots/<slug>/<lang>/` (e.g. `…/en`, `…/it`);
+  reuse the same screens/brand; translate claims faithfully from DESIGN sources; deliver each locale.
 - Path to **3–6** raw screenshots (optional separate iOS / Android folders).
 - Optional brand / app icon — **not** tied to Play. Resolve: user file → store listing icon
   (App Store and/or Play when available) → repo source (AppIcon / launcher). See
@@ -46,7 +48,8 @@ ratings, #1, testimonials, or features the app does not have.
   iOS-only or no Play asset is fine.
 - Optional lifestyle photo path — **only** if the user asks for a full-bleed photo slide; never
   invent or download stock. Put the file under `assets/brand/` or `assets/lifestyle/`.
-- N slides (default 4, min 3); output folder (default `~/store-screenshots/<slug>`).
+- N slides (default 4, min 3); output folder default
+  `~/store-screenshots/<slug>/<lang>` (lang = user choice or `en`).
 
 Do **not** capture from simulator/device in v1 — ask the user for PNGs.
 
@@ -54,9 +57,10 @@ Do **not** capture from simulator/device in v1 — ask the user for PNGs.
 
 Commands: `references/pipeline.md`. Sizes: `references/sizes.md`. Layouts: `references/layout.md`.
 
-1. **Scaffold** (only after copy language is known).  
-   `new_project.py --app <slug> --out <dir> --lang <lang> [--name "…"]`  
-   Always pass `--lang` from the user’s answer.  
+1. **Scaffold.**  
+   `new_project.py --app <slug> --out ~/store-screenshots/<slug>/<lang> --lang <lang> [--name "…"]`  
+   `--lang` defaults to `en` if the user did not choose another. Never leave slides at `<slug>/` root —
+   always nest under `<lang>`. For extra locales, scaffold again into `…/<slug>/<other-lang>`.  
    Screens: `--screens DIR`, or `--screens-android DIR --screens-ios DIR` (creates
    `slides/iphone/` + `slides/play/` with matching assets).
 2. **Research, then DESIGN.md.**  
@@ -85,4 +89,5 @@ Commands: `references/pipeline.md`. Sizes: `references/sizes.md`. Layouts: `refe
 
 ## Out of scope (v1)
 
-Device capture guidance, tablets/iPad, feature graphic, multi-locale batch, store upload.
+Device capture guidance, tablets/iPad, feature graphic, store upload.
+(Multi-language variants via `~/store-screenshots/<slug>/<lang>/` are in scope.)

@@ -1,6 +1,6 @@
 # app-store-screens
 
-**Version 1.0**
+**Version 1.1**
 
 AI agent skill that turns **raw app screenshots** into polished **App Store** and
 **Google Play** phone listing images: themed background, short claims, and the
@@ -30,7 +30,6 @@ Pipeline details: [`skills/app-store-screens/references/pipeline.md`](skills/app
 | Input | Notes |
 |-------|--------|
 | **3–6 UI screenshots** | Paths to PNG/JPEG. Optional separate iOS / Android folders. Not captured from simulator in v1 — you supply the files. |
-| **Copy language** | e.g. `en`, `it`. Must be stated; the skill does not invent or default it. |
 | **App name / project slug** | Used for the output folder and slide titles. |
 
 ### Strongly recommended
@@ -45,12 +44,27 @@ Pipeline details: [`skills/app-store-screens/references/pipeline.md`](skills/app
 
 | Input | Notes |
 |-------|--------|
+| **Copy language** | Default **English (`en`)**. You may choose another language, or ask for several variants (see Languages). |
 | **Brand icon / logo** | File or folder. Else: store artwork → app repo launcher/AppIcon via `fetch_icon.py`. `.app-icon` in the claim is **omitted by default**. |
 | **Custom graphics** | Illustrations, hero art — see below. |
 | **Lifestyle photo** | Only for a full-bleed slide — see below. Never invent or download stock. |
 | App source repo path | Read-only, for icon / string research. |
-| Output directory | Default `~/store-screenshots/<slug>`. |
+| Output directory | Default `~/store-screenshots/<slug>/<lang>`. |
 | Storefront country | For store metadata fetch (independent of copy language). |
+
+## Languages
+
+- **Default:** English (`en`). If you do not specify a language, the skill proceeds in English.
+- **Choose one:** pass the language you want (e.g. Italian); claims and `html lang` follow it.
+- **Multiple variants:** one complete project per locale:
+
+```
+~/store-screenshots/<slug>/
+  en/     # default or primary
+  it/     # extra variant, if requested
+```
+
+Each `<lang>` folder has its own `assets/`, `slides/`, `out/`, and `DESIGN.md`. Reuse the same screenshots/brand; translate claims from the same sourced facts.
 
 ## Custom graphics
 
@@ -94,8 +108,11 @@ Or drive the scripts yourself:
 
 ```bash
 .venv/bin/python skills/app-store-screens/scripts/new_project.py \
-  --app my-app --out ~/store-screenshots/my-app --lang en \
+  --app my-app --out ~/store-screenshots/my-app/en --lang en \
   --screens ./my-raw-screens
+
+# Another locale:
+#   --out ~/store-screenshots/my-app/it --lang it
 
 # Optional separate platforms:
 #   --screens-android ./android --screens-ios ./ios
@@ -103,8 +120,8 @@ Or drive the scripts yourself:
 #   --brand ./brand-assets
 
 # Edit slides (iphone/ + play/ or flat) and DESIGN.md, then:
-.venv/bin/python skills/app-store-screens/scripts/render.py ~/store-screenshots/my-app
-.venv/bin/python skills/app-store-screens/scripts/validate.py ~/store-screenshots/my-app
+.venv/bin/python skills/app-store-screens/scripts/render.py ~/store-screenshots/my-app/en
+.venv/bin/python skills/app-store-screens/scripts/validate.py ~/store-screenshots/my-app/en
 ```
 
 ## Layouts
@@ -126,6 +143,17 @@ skills/app-store-screens/   # SKILL.md + scripts + template + references
 tests/
 requirements.txt
 ```
+
+## Changelog
+
+### 1.1
+
+- Default copy language is English; user may choose another language.
+- Multiple language variants as `~/store-screenshots/<slug>/<lang>/`.
+
+### 1.0
+
+- Initial public release of the skill.
 
 ## Licence
 

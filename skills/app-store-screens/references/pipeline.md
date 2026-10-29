@@ -5,8 +5,11 @@ Use the repo `.venv` Python after `pip install -r requirements.txt` and `playwri
 
 ## Scaffold
 
+Copy language defaults to **English**. Nest each locale under the app slug:
+
 ```bash
-python <skill>/scripts/new_project.py --app <slug> --out ~/store-screenshots/<slug>
+python <skill>/scripts/new_project.py --app <slug> \
+  --out ~/store-screenshots/<slug>/en --lang en
 ```
 
 Optional: `--screens /path/to/dir` copies PNG/JPEG into `assets/screens/`.
@@ -15,12 +18,15 @@ Optional: `--screens /path/to/dir` copies PNG/JPEG into `assets/screens/`.
 Separate platform screens (preferred when UI differs):
 
 ```bash
-python <skill>/scripts/new_project.py --app <slug> --out DIR --lang it \
+python <skill>/scripts/new_project.py --app <slug> \
+  --out ~/store-screenshots/<slug>/it --lang it \
   --screens-android /path/android --screens-ios /path/ios
 ```
 
 Creates `assets/screens/{android,ios}/` and `slides/{iphone,play}/` (iPhone bezel + iOS
-shots; Pixel bezel + Android shots). `render.py` / `validate.py` use those folders.
+shots; Pixel bezel + Android shots). `render.py` / `validate.py` take the **language
+folder** as `<project>` (e.g. `…/<slug>/en`). For another locale, scaffold/compose/render
+again under `…/<slug>/<lang>`.
 
 ## Research
 
