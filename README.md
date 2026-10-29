@@ -106,7 +106,7 @@ python -m venv .venv
 .venv/bin/playwright install chromium
 ```
 
-### Use with an agent (optional)
+### Use with an agent
 
 This skill is meant to be used mainly from an agent (Cursor, Claude Code, or similar).
 Register `skills/app-store-screens/` in the skills path your tool uses:
