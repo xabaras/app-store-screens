@@ -88,18 +88,30 @@ A slide that uses a **full-bleed photo** instead of (or without) a device frame:
 
 ## Install
 
+### Prerequisites
+
+- **Python 3.10+** (3.11+ recommended) with `venv` / `pip`
+- Network access the first time you run `playwright install chromium` (browser download)
+- Optional: an AI coding agent that can load Agent Skills (for example Cursor, Claude Code, or similar) if you want the skill-driven workflow — the scripts also work standalone
+
+### Setup
+
 ```bash
-cd ~/code/app-store-screens   # or your clone path
+cd /path/to/app-store-screens   # your clone path
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/playwright install chromium
 ```
 
-Expose the skill to Cursor:
+### Use with an agent (optional)
+
+Point your agent at this repo / `skills/app-store-screens/` using whatever skill path your tool expects. Example for Cursor:
 
 ```bash
 ln -sfn /path/to/app-store-screens ~/.cursor/skills/app-store-screens
 ```
+
+Other agents (Claude Code, etc.) use their own skills directory — same folder contents apply.
 
 ## Quick use
 
