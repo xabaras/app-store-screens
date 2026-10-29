@@ -10,6 +10,8 @@ description: >-
 
 # app-store-screens
 
+Version: **1.0**
+
 Input: an app + **3–6 user-provided UI screenshots** (+ optional brand art).  
 Output: **3–4** store-ready PNGs for **iPhone (1290×2796)** and **Play phone (1080×1920)**.  
 Nothing is uploaded.

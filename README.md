@@ -1,5 +1,7 @@
 # app-store-screens
 
+**Version 1.0**
+
 AI agent skill that turns **raw app screenshots** into polished **App Store** and
 **Google Play** phone listing images: themed background, short claims, and the
 real UI (optionally inside an iPhone or Pixel bezel as part of the graphic).
